@@ -13,7 +13,10 @@ export default function MyCalendar() {
   const [date, setDate]: any = useState(new Date());
   const [view, setView]: any = useState(Views.MONTH);
   const onView = useCallback((newView: any) => setView(newView), [setView]);
-  const onNavigate = useCallback((curr: any) => setDate(new Date(curr)), [setDate]);
+  const onNavigate = useCallback(
+    (curr: any) => setDate(new Date(curr)),
+    [setDate]
+  );
   //  \slove Next 14 issue
 
   const [events, setEvents] = useState([
@@ -32,20 +35,18 @@ export default function MyCalendar() {
   ]);
 
   return (
-    <div className="myCustomHeight">
-      <Calendar
-        localizer={localizer}
-        events={events}
-        views={[Views.MONTH, Views.WEEK, Views.DAY]}
-        style={{ height: 500 }}
-        
-        // to slove Next 14 issue
-        view={view} // Include the view prop
-        date={date} // Include the date prop
-        onNavigate={onNavigate}
-        onView={onView}
-        // \to slove Next 14 issue
-      />
-    </div>
+    <Calendar
+      localizer={localizer}
+      events={events}
+      views={[Views.MONTH, Views.WEEK, Views.DAY]}
+      style={{ height: 500 }}
+      // to slove Next 14 issue
+      view={view} // Include the view prop
+      date={date} // Include the date prop
+      onNavigate={onNavigate}
+      onView={onView}
+      // \to slove Next 14 issue
+      className="text-black w-11/12"
+    />
   );
 }
